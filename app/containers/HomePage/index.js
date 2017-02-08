@@ -7,6 +7,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import Puzzle from 'containers/Puzzle';
+import Tarjeta from 'components/Tarjeta';
 
 import Page from './Page';
 import H1 from './H1';
@@ -24,6 +25,7 @@ export default class HomePage extends React.PureComponent {
         <H1>
           <FormattedMessage {...messages.title} />
         </H1>
+        <Tarjeta texto="" imgSrc="" />
       </Page>
     );
   }
