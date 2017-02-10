@@ -32,6 +32,26 @@ export default function createRoutes(store) {
         importModules.catch(errorLoading);
       },
     }, {
+      path: 'tarjetas',
+      name: 'tarjetas',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/Tarjetas/reducer'),
+          import('containers/Tarjetas/sagas'),
+          import('containers/Tarjetas'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('tarjetas', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
